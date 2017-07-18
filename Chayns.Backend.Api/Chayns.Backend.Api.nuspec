@@ -33,13 +33,13 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\dev\Git\Chayns.Backend.Api\Chayns.Backend.Api\bin\Release\net452\Chayns.Backend.Api.dll" target="lib\net452\Chayns.Backend.Api.dll" />
-    <file src="C:\dev\Git\Chayns.Backend.Api\Chayns.Backend.Api\bin\Release\net452\Chayns.Backend.Api.xml" target="lib\net452\Chayns.Backend.Api.xml" />
-    <file src="C:\dev\Git\Chayns.Backend.Api\Chayns.Backend.Api\bin\Release\net46\Chayns.Backend.Api.dll" target="lib\net46\Chayns.Backend.Api.dll" />
-    <file src="C:\dev\Git\Chayns.Backend.Api\Chayns.Backend.Api\bin\Release\net46\Chayns.Backend.Api.xml" target="lib\net46\Chayns.Backend.Api.xml" />
-    <file src="C:\dev\Git\Chayns.Backend.Api\Chayns.Backend.Api\bin\Release\netcoreapp1.0\Chayns.Backend.Api.dll" target="lib\netcoreapp1.0\Chayns.Backend.Api.dll" />
-    <file src="C:\dev\Git\Chayns.Backend.Api\Chayns.Backend.Api\bin\Release\netcoreapp1.0\Chayns.Backend.Api.xml" target="lib\netcoreapp1.0\Chayns.Backend.Api.xml" />
-    <file src="C:\dev\Git\Chayns.Backend.Api\Chayns.Backend.Api\bin\Release\netcoreapp1.1\Chayns.Backend.Api.dll" target="lib\netcoreapp1.1\Chayns.Backend.Api.dll" />
-    <file src="C:\dev\Git\Chayns.Backend.Api\Chayns.Backend.Api\bin\Release\netcoreapp1.1\Chayns.Backend.Api.xml" target="lib\netcoreapp1.1\Chayns.Backend.Api.xml" />
+    <file src="bin\Release\net452\Chayns.Backend.Api.dll" target="lib\net452\Chayns.Backend.Api.dll" />
+    <file src="bin\Release\net452\Chayns.Backend.Api.xml" target="lib\net452\Chayns.Backend.Api.xml" />
+    <file src="bin\Release\net46\Chayns.Backend.Api.dll" target="lib\net46\Chayns.Backend.Api.dll" />
+    <file src="bin\Release\net46\Chayns.Backend.Api.xml" target="lib\net46\Chayns.Backend.Api.xml" />
+    <file src="bin\Release\netcoreapp1.0\Chayns.Backend.Api.dll" target="lib\netcoreapp1.0\Chayns.Backend.Api.dll" />
+    <file src="bin\Release\netcoreapp1.0\Chayns.Backend.Api.xml" target="lib\netcoreapp1.0\Chayns.Backend.Api.xml" />
+    <file src="bin\Release\netcoreapp1.1\Chayns.Backend.Api.dll" target="lib\netcoreapp1.1\Chayns.Backend.Api.dll" />
+    <file src="bin\Release\netcoreapp1.1\Chayns.Backend.Api.xml" target="lib\netcoreapp1.1\Chayns.Backend.Api.xml" />
   </files>
 </package>
