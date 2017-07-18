@@ -1,15 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <TargetFrameworks>net452;net46;netcoreapp1.0;netcoreapp1.1</TargetFrameworks>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyName>Chayns.Backend.Api</AssemblyName>
+    <Description>Base Features for .NET Core WebApi</Description>
+    <Copyright>Tobit Software AG</Copyright>
     <PackageId>Chayns.Backend.Api</PackageId>
+
     <RepositoryType>git</RepositoryType>
+
+    <AssemblyTitle>Chayns.Backend.Api</AssemblyTitle>
+    <AssemblyName>Chayns.Backend.Api</AssemblyName>
+    <TargetFrameworks>net452;net46;netcoreapp1.0;netcoreapp1.1</TargetFrameworks>
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.6' ">1.6.1</NetStandardImplicitPackageVersion>
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'net46' ">1.6.1</NetStandardImplicitPackageVersion>
+    
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
