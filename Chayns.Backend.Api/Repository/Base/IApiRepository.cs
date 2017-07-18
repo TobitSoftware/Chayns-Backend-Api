@@ -1,8 +1,8 @@
 ﻿using Chayns.Backend.Api.Credentials.Base;
 
-namespace Chayns.Backend.Api.Controller.Base
+namespace Chayns.Backend.Api.Repository.Base
 {
-    public interface IApiController
+    public interface IApiRepository
     {
         /// <summary>
         /// Gets the controllername for the WebApi

@@ -1,15 +1,15 @@
 ﻿using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Result.Base;
 
-namespace Chayns.Backend.Api.Controller.Base
+namespace Chayns.Backend.Api.Repository.Base
 {
-    public abstract class BaseApiController<TResult> : IApiController where TResult : IApiResult
+    public abstract class BaseApiRepository<TResult> : IApiRepository where TResult : IApiResult
     {
         /// <summary>
         /// Constructs a BaseApiController
         /// </summary>
         /// <param name="credentials">Sets the credentials for all Request with this object</param>
-        protected BaseApiController(ICredentials credentials)
+        protected BaseApiRepository(ICredentials credentials)
         {
             SetCredentials(credentials);
             Caller = new WebApiCaller<TResult>();

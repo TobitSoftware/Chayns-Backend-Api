@@ -1,21 +1,21 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
-using Chayns.Backend.Api.Controller.Base;
 using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Data;
 using Chayns.Backend.Api.Models.Result;
+using Chayns.Backend.Api.Repository.Base;
 
-namespace Chayns.Backend.Api.Controller
+namespace Chayns.Backend.Api.Repository
 {
     /// <summary>
     /// Object to get location data
     /// </summary>
-    public sealed class LocationController : BaseApiController<LocationResult>
+    public sealed class LocationRepository : BaseApiRepository<LocationResult>
     {
         /// <summary>
         /// Creates a new object to get locations
         /// </summary>
-        public LocationController() : base(null)
+        public LocationRepository() : base(null)
         {
         }
 
@@ -23,7 +23,7 @@ namespace Chayns.Backend.Api.Controller
         /// Creates a new object to get locations
         /// </summary>
         /// <param name="credentials">Sets the credentials to authenticate all calling requests within this object</param>
-        public LocationController(ICredentials credentials) : base(credentials)
+        public LocationRepository(ICredentials credentials) : base(credentials)
         {
         }
 

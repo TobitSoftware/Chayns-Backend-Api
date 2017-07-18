@@ -1,26 +1,26 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
-using Chayns.Backend.Api.Controller.Base;
 using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Data;
 using Chayns.Backend.Api.Models.Result;
+using Chayns.Backend.Api.Repository.Base;
 
-namespace Chayns.Backend.Api.Controller
+namespace Chayns.Backend.Api.Repository
 {
     /// <summary>
     /// Object to get, modify, create and delete uac groups
     /// </summary>
-    public class UacController : BaseApiController<UacGroupResult>
+    public class UacRepository : BaseApiRepository<UacGroupResult>
     {
         /// <summary>
         /// Creates a new object to get, modify, create and delete uac groups
         /// </summary>
-        public UacController() : base(null) { }
+        public UacRepository() : base(null) { }
         /// <summary>
         /// Creates a new object to get, modify, create and delete uac groups
         /// </summary>
         /// <param name="credentials">Sets the credentials to authenticate all calling requests within this object</param>
-        public UacController(ICredentials credentials) : base(credentials)
+        public UacRepository(ICredentials credentials) : base(credentials)
         {
         }
 

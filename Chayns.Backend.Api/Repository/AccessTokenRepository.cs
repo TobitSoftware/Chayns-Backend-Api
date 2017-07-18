@@ -2,19 +2,19 @@
 using System.Collections.Concurrent;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Chayns.Backend.Api.Controller.Base;
 using Chayns.Backend.Api.Credentials;
 using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Data;
 using Chayns.Backend.Api.Models.Data.Base;
 using Chayns.Backend.Api.Models.Result;
+using Chayns.Backend.Api.Repository.Base;
 
-namespace Chayns.Backend.Api.Controller
+namespace Chayns.Backend.Api.Repository
 {
     /// <summary>
     /// Object to validate and get AccessTokens
     /// </summary>
-    public class AccessTokenController : IApiController
+    public class AccessTokenRepository : IApiRepository
     {
         private readonly ConcurrentDictionary<string, ICredentials> _credentials = new ConcurrentDictionary<string, ICredentials>();
 

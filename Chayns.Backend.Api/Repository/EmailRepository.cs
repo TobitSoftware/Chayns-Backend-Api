@@ -1,24 +1,24 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
-using Chayns.Backend.Api.Controller.Base;
 using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Data;
 using Chayns.Backend.Api.Models.Result;
+using Chayns.Backend.Api.Repository.Base;
 
-namespace Chayns.Backend.Api.Controller
+namespace Chayns.Backend.Api.Repository
 {
-    public sealed class EmailController : BaseApiController<EmailResult>
+    public sealed class EmailRepository : BaseApiRepository<EmailResult>
     {
         /// <summary>
         /// Creates a new object to send Emails
         /// </summary>
-        public EmailController() : base(null) { }
+        public EmailRepository() : base(null) { }
 
         /// <summary>
         /// Creates a new object to send Emails
         /// </summary>
         /// <param name="credentials"></param>
-        public EmailController(ICredentials credentials) : base(credentials) { }
+        public EmailRepository(ICredentials credentials) : base(credentials) { }
 
         /// <summary>
         /// Sends an Email to given receivers async

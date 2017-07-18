@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
-using Chayns.Backend.Api.Controller.Base;
 using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Data;
 using Chayns.Backend.Api.Models.Result;
+using Chayns.Backend.Api.Repository.Base;
 
-namespace Chayns.Backend.Api.Controller
+namespace Chayns.Backend.Api.Repository
 {
-    public sealed class IntercomController : BaseApiController<IntercomResult>
+    public sealed class IntercomRepository : BaseApiRepository<IntercomResult>
     {
         /// <summary>
         /// Creates a new object to send Intercom messages
         /// </summary>
-        public IntercomController() : base(null) { }
+        public IntercomRepository() : base(null) { }
         /// <summary>
         /// Creates a new object to send Intercom messages
         /// </summary>
         /// <param name="credentials">Sets the credentials to authenticate all calling requests within this object</param>
-        public IntercomController(ICredentials credentials) : base(credentials) { }
+        public IntercomRepository(ICredentials credentials) : base(credentials) { }
 
         /// <summary>
         /// Sends a message to given receivers async

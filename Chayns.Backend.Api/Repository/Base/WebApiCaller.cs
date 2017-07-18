@@ -13,11 +13,11 @@ using Chayns.Backend.Api.Models.Result;
 using Chayns.Backend.Api.Models.Result.Base;
 using Newtonsoft.Json;
 
-namespace Chayns.Backend.Api.Controller.Base
+namespace Chayns.Backend.Api.Repository.Base
 {
     internal sealed class WebApiCaller<TResult> where TResult : IApiResult
     {
-        internal async Task<Result<TResult>> CallApiAsync<TData>(TData request, IApiController caller, HttpMethod method, int? id = null, [CallerMemberName] string callingFunction = null) where TData : ChangeableData, IApiData
+        internal async Task<Result<TResult>> CallApiAsync<TData>(TData request, IApiRepository caller, HttpMethod method, int? id = null, [CallerMemberName] string callingFunction = null) where TData : ChangeableData, IApiData
         {
             var url = Config.WebApiUrl + (string.IsNullOrWhiteSpace(request?.GetLocationIdentifier()) ? "" : request.GetLocationIdentifier() + "/") + caller.Controller(callingFunction) + (id.HasValue ? ("/" + id) : "");
             Task<string> dataTask = null;
@@ -72,7 +72,7 @@ namespace Chayns.Backend.Api.Controller.Base
             return ParseResponse(jsonresult, webException);
         }
 
-        internal Result<TResult> CallApi<TData>(TData request, IApiController caller, HttpMethod method, int? id = null, [CallerMemberName] string callingFunction = null) where TData : ChangeableData, IApiData
+        internal Result<TResult> CallApi<TData>(TData request, IApiRepository caller, HttpMethod method, int? id = null, [CallerMemberName] string callingFunction = null) where TData : ChangeableData, IApiData
         {
             var url = Config.WebApiUrl + (string.IsNullOrWhiteSpace(request?.GetLocationIdentifier()) ? "" : request.GetLocationIdentifier() + "/") + caller.Controller(callingFunction) + (id.HasValue ? ("/" + id) : "");
             var data = "";

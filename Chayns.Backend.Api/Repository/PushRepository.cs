@@ -1,26 +1,26 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
-using Chayns.Backend.Api.Controller.Base;
 using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Data;
 using Chayns.Backend.Api.Models.Result;
+using Chayns.Backend.Api.Repository.Base;
 
-namespace Chayns.Backend.Api.Controller
+namespace Chayns.Backend.Api.Repository
 {
     /// <summary>
     /// Object to push messages
     /// </summary>
-    public class PushController : BaseApiController<PushResult>
+    public class PushRepository : BaseApiRepository<PushResult>
     {
         /// <summary>
         /// Creates a new object to push messages
         /// </summary>
-        public PushController() : base(null) { }
+        public PushRepository() : base(null) { }
         /// <summary>
         /// Creates a new object to push messages
         /// </summary>
         /// <param name="credentials">Sets the credentials to authenticate all calling requests within this object</param>
-        public PushController(ICredentials credentials) : base(credentials) { }
+        public PushRepository(ICredentials credentials) : base(credentials) { }
 
         /// <summary>
         /// Pushs a message to a user async

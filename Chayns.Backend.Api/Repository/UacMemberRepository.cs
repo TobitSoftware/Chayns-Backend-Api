@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
-using Chayns.Backend.Api.Controller.Base;
 using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Data;
 using Chayns.Backend.Api.Models.Result;
+using Chayns.Backend.Api.Repository.Base;
 
-namespace Chayns.Backend.Api.Controller
+namespace Chayns.Backend.Api.Repository
 {
     /// <summary>
     /// Object to get, add and delete uac members
     /// </summary>
-    public class UacMemberController : BaseApiController<UacMemberResult>
+    public class UacMemberRepository : BaseApiRepository<UacMemberResult>
     {
         /// <summary>
         /// Creates a new object to get, add and delete uac members
         /// </summary>
-        public UacMemberController() : base(null) { }
+        public UacMemberRepository() : base(null) { }
         /// <summary>
         /// Creates a new object to get, add and delete uac members
         /// </summary>
         /// <param name="credentials">Sets the credentials to authenticate all calling requests within this object</param>
-        public UacMemberController(ICredentials credentials) : base(credentials)
+        public UacMemberRepository(ICredentials credentials) : base(credentials)
         {
         }
 

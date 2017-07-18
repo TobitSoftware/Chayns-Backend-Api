@@ -3,23 +3,24 @@ using System.Threading.Tasks;
 using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Data;
 using Chayns.Backend.Api.Models.Result;
+using Chayns.Backend.Api.Repository.Base;
 
-namespace Chayns.Backend.Api.Controller
+namespace Chayns.Backend.Api.Repository
 {
     /// <summary>
     /// Object to get device data
     /// </summary>
-    public class DeviceController : Base.BaseApiController<DeviceResult>
+    public class DeviceRepository : BaseApiRepository<DeviceResult>
     {
         /// <summary>
         /// Creates a new object to get devices
         /// </summary>
-        public DeviceController() : base(null) { }
+        public DeviceRepository() : base(null) { }
         /// <summary>
         /// Creates a new object to get devices
         /// </summary>
         /// <param name="credentials">Sets the credentials to authenticate all calling requests within this object</param>
-        public DeviceController(ICredentials credentials) : base(credentials) { }
+        public DeviceRepository(ICredentials credentials) : base(credentials) { }
 
         /// <summary>
         /// Gets all devices async
