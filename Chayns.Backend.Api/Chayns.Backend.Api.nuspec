@@ -4,13 +4,15 @@
     <language>en-US</language>
     <id>Chayns.Backend.Api</id>
     <version>1.0.0</version>
-    <authors>Chayns.Backend.Api</authors>
+    <authors>Tobit.Software AG</authors>
     <owners>Chayns.Backend.Api</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <title>Chayns.Backend.Api</title>
     <description>This package helps do access the chayns®BackendApi.</description>
     <copyright>Copyright (c) 2017 Tobit.Software AG</copyright>
     <licenseUrl>http://tapp01.tobit.com/content/mit_license.txt</licenseUrl>
     <iconUrl>https://chayns.tobit.com/storage/60038-22141/Images/icon-57.png</iconUrl>
+    <projectUrl>https://github.com/TobitSoftware/Chayns-Backend-Api</projectUrl>
     <dependencies>
       <group targetFramework=".NETFramework4.6">
         <dependency id="System.Net.Http" version="4.3.2" exclude="Build,Analyzers" />
