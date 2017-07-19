@@ -1,6 +1,6 @@
 ﻿using Chayns.Backend.Api.Credentials.Base;
 
-namespace Chayns.Backend.Api.Repository.Base
+namespace Chayns.Backend.Api.Repositories.Base
 {
     public interface IApiRepository
     {

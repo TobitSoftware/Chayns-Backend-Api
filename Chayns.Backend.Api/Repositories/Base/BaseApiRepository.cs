@@ -1,7 +1,7 @@
 ﻿using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Result.Base;
 
-namespace Chayns.Backend.Api.Repository.Base
+namespace Chayns.Backend.Api.Repositories.Base
 {
     public abstract class BaseApiRepository<TResult> : IApiRepository where TResult : IApiResult
     {

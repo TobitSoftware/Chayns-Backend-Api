@@ -13,7 +13,7 @@ using Chayns.Backend.Api.Models.Result;
 using Chayns.Backend.Api.Models.Result.Base;
 using Newtonsoft.Json;
 
-namespace Chayns.Backend.Api.Repository.Base
+namespace Chayns.Backend.Api.Repositories.Base
 {
     internal sealed class WebApiCaller<TResult> where TResult : IApiResult
     {

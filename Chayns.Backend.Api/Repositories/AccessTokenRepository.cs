@@ -7,9 +7,9 @@ using Chayns.Backend.Api.Credentials.Base;
 using Chayns.Backend.Api.Models.Data;
 using Chayns.Backend.Api.Models.Data.Base;
 using Chayns.Backend.Api.Models.Result;
-using Chayns.Backend.Api.Repository.Base;
+using Chayns.Backend.Api.Repositories.Base;
 
-namespace Chayns.Backend.Api.Repository
+namespace Chayns.Backend.Api.Repositories
 {
     /// <summary>
     /// Object to validate and get AccessTokens
