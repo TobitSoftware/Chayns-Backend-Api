@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -33,9 +32,6 @@ namespace Chayns.Backend.Api.Repositories.Base
                 }
             }
 
-            var jsonresult = "";
-            WebException webException = null;
-
             using (var hc = new HttpClient())
             {
                 if (method == HttpMethod.Get)
@@ -61,15 +57,13 @@ namespace Chayns.Backend.Api.Repositories.Base
                 try
                 {
                     var respone = await hc.SendAsync(req);
-                    jsonresult = await respone.Content.ReadAsStringAsync();
+                    return ParseResponse(respone);
                 }
-                catch (WebException wex)
+                catch (WebException)
                 {
-                    webException = wex;
+                    return ParseResponse(null);
                 }
             }
-
-            return ParseResponse(jsonresult, webException);
         }
 
         internal Result<TResult> CallApi<TData>(TData request, IApiRepository caller, HttpMethod method, int? id = null, [CallerMemberName] string callingFunction = null) where TData : ChangeableData, IApiData
@@ -87,9 +81,6 @@ namespace Chayns.Backend.Api.Repositories.Base
                     data = JsonConvert.SerializeObject(request);
                 }
             }
-
-            var jsonresult = "";
-            WebException webException = null;
 
             using (var hc = new HttpClient())
             {
@@ -116,63 +107,57 @@ namespace Chayns.Backend.Api.Repositories.Base
                 try
                 {
                     var response = hc.SendAsync(req).Result;
-                    jsonresult = response.Content.ReadAsStringAsync().Result;
+                    return ParseResponse(response);
                 }
-                catch (WebException wex)
+                catch (WebException)
                 {
-                    webException = wex;
+                    return ParseResponse(null);
                 }
             }
-
-            return ParseResponse(jsonresult, webException);
         }
 
-        private Result<TResult> ParseResponse(string jsonresult, WebException wex)
+        private Result<TResult> ParseResponse(HttpResponseMessage respMsg)
         {
-            Result<TResult> result;
-            if (wex == null)
+            var result = new Result<TResult>();
+
+            if (respMsg?.IsSuccessStatusCode == true)
             {
-                result = JsonConvert.DeserializeObject<Result<TResult>>(jsonresult) ?? new Result<TResult>();
-            }
-            else
-            {
-                result = new Result<TResult>();
+                var respBodyTask = respMsg.Content.ReadAsStringAsync();
+                respBodyTask.Wait();
+                var respBody = respBodyTask.Result;
+                result = JsonConvert.DeserializeObject<Result<TResult>>(respBody) ?? result;
             }
 
-            result.Status = GetStatus(wex);
+            result.Status = GetStatus(respMsg);
 
             return result;
         }
 
-        private Status GetStatus(WebException wex)
+        private Status GetStatus(HttpResponseMessage respMsg)
         {
-            Status status;
-            if (wex != null)
+            if (respMsg == null)
             {
-                var resp = (HttpWebResponse)wex.Response;
-                try
-                {
-                    string errorResponse;
-                    // ReSharper disable once AssignNullToNotNullAttribute
-                    using (var reader = new StreamReader(resp.GetResponseStream(), Encoding.UTF8))
-                    {
-                        errorResponse = reader.ReadToEnd();
-                    }
-                    var err = JsonConvert.DeserializeObject<ErrorResponse>(errorResponse);
-                    status = new Status((int)resp.StatusCode, err.ErrorGuid, err.Message);
-                }
-                catch
-                {
-                    status = new Status((int)resp.StatusCode, Guid.Empty, resp.StatusDescription);
-                }
-
-            }
-            else
-            {
-                status = new Status(200);
+                return new Status(-1, Guid.Empty, "Internal error");
             }
 
-            return status;
+            if (respMsg.IsSuccessStatusCode)
+            {
+                return new Status((int)respMsg.StatusCode);
+            }
+
+            try
+            {
+                var respBodyTask = respMsg.Content.ReadAsStringAsync();
+                respBodyTask.Wait();
+                var respBody = respBodyTask.Result;
+
+                var err = JsonConvert.DeserializeObject<ErrorResponse>(respBody);
+                return new Status((int)respMsg.StatusCode, err.ErrorGuid, err.Message);
+            }
+            catch (Exception ex)
+            {
+                return new Status(-1, Guid.Empty, ex.Message);
+            }
         }
     }
 }
