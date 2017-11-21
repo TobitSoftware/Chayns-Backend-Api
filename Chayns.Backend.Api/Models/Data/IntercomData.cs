@@ -113,5 +113,22 @@ namespace Chayns.Backend.Api.Models.Data
         }
 
         #endregion
+
+        #region Images
+
+        private List<IntercomImage> _images;
+
+        [JsonProperty(PropertyName = "Images")]
+        public List<IntercomImage> Images
+        {
+            get => _images;
+            set
+            {
+                _images = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
     }
 }
