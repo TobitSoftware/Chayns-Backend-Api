@@ -41,5 +41,20 @@ namespace Chayns.Backend.Api.Models.Data
         }
 
         #endregion ShowName
+
+        #region Description
+
+        private string _description;
+        public string Description
+        {
+            get => _description;
+            set
+            {
+                _description = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion Description
     }
 }
