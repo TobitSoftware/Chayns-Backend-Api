@@ -7,7 +7,13 @@ namespace Chayns.Backend.Api.Helper
     {
         private static readonly HttpClient Client = new HttpClient
         {
-            DefaultRequestHeaders = { UserAgent = { new ProductInfoHeaderValue("ChaynsBackendApi", "2")}}
+            DefaultRequestHeaders =
+            {
+                UserAgent =
+                {
+                    new ProductInfoHeaderValue("ChaynsBackendApi", "1.0")
+                }
+            }
         };
 
         internal static HttpClient GetClient() => Client;
