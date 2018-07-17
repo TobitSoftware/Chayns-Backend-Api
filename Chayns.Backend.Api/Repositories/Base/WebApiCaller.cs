@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 namespace Chayns.Backend.Api.Repositories.Base
 {
     internal sealed class WebApiCaller<TResult> where TResult : IApiResult
-    {
+    {       
         internal async Task<Result<TResult>> CallApiAsync<TData>(TData request, IApiRepository caller, HttpMethod method, int? id = null, [CallerMemberName] string callingFunction = null) where TData : ChangeableData, IApiData
         {
             var url = Config.WebApiUrl + (string.IsNullOrWhiteSpace(request?.GetLocationIdentifier()) ? "" : request.GetLocationIdentifier() + "/") + caller.Controller(callingFunction) + (id.HasValue ? ("/" + id) : "");
@@ -32,37 +32,36 @@ namespace Chayns.Backend.Api.Repositories.Base
                 }
             }
 
-            using (var hc = new HttpClient())
+            if (method == HttpMethod.Get)
             {
-                if (method == HttpMethod.Get)
-                {
-                    url += dataTask == null ? "" : await dataTask;
-                }
-                var req = new HttpRequestMessage(method, url);
+                url += dataTask == null ? "" : await dataTask;
+            }
 
-                var credentials = caller.GetCredentials(callingFunction);
-                if (credentials != null)
-                {
-                    req.Headers.Authorization = new AuthenticationHeaderValue(credentials.Scheme(), credentials.Parameter());
-                }
+            var req = new HttpRequestMessage(method, url);
 
-                if (method != HttpMethod.Get)
-                {
-                    const string mediaType = "application/json";
-                    var content = new StringContent(dataTask == null ? "" : await dataTask, Encoding.UTF8, mediaType);
+            var credentials = caller.GetCredentials(callingFunction);
+            if (credentials != null)
+            {
+                req.Headers.Authorization =
+                    new AuthenticationHeaderValue(credentials.Scheme(), credentials.Parameter());
+            }
 
-                    req.Content = content;
-                }
+            if (method != HttpMethod.Get)
+            {
+                const string mediaType = "application/json";
+                var content = new StringContent(dataTask == null ? "" : await dataTask, Encoding.UTF8, mediaType);
 
-                try
-                {
-                    var respone = await hc.SendAsync(req);
-                    return ParseResponse(respone);
-                }
-                catch (WebException)
-                {
-                    return ParseResponse(null);
-                }
+                req.Content = content;
+            }
+
+            try
+            {
+                var response = await WebClientProvider.GetClient().SendAsync(req);
+                return ParseResponse(response);
+            }
+            catch (WebException)
+            {
+                return ParseResponse(null);
             }
         }
 
@@ -82,37 +81,36 @@ namespace Chayns.Backend.Api.Repositories.Base
                 }
             }
 
-            using (var hc = new HttpClient())
+            if (method == HttpMethod.Get)
             {
-                if (method == HttpMethod.Get)
-                {
-                    url += data ?? "";
-                }
-                var req = new HttpRequestMessage(method, url);
+                url += data ?? "";
+            }
 
-                var credentials = caller.GetCredentials(callingFunction);
-                if (credentials != null)
-                {
-                    req.Headers.Authorization = new AuthenticationHeaderValue(credentials.Scheme(), credentials.Parameter());
-                }
+            var req = new HttpRequestMessage(method, url);
 
-                if (method != HttpMethod.Get)
-                {
-                    const string mediaType = "application/json";
-                    var content = new StringContent(data ?? "", Encoding.UTF8, mediaType);
+            var credentials = caller.GetCredentials(callingFunction);
+            if (credentials != null)
+            {
+                req.Headers.Authorization =
+                    new AuthenticationHeaderValue(credentials.Scheme(), credentials.Parameter());
+            }
 
-                    req.Content = content;
-                }
+            if (method != HttpMethod.Get)
+            {
+                const string mediaType = "application/json";
+                var content = new StringContent(data ?? "", Encoding.UTF8, mediaType);
 
-                try
-                {
-                    var response = hc.SendAsync(req).Result;
-                    return ParseResponse(response);
-                }
-                catch (WebException)
-                {
-                    return ParseResponse(null);
-                }
+                req.Content = content;
+            }
+
+            try
+            {
+                var response = WebClientProvider.GetClient().SendAsync(req).Result;
+                return ParseResponse(response);
+            }
+            catch (WebException)
+            {
+                return ParseResponse(null);
             }
         }
 
